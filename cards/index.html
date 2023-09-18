@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+  </head>
+  <style>
+  *{
+  box-sizing: border-box;
+  }
+
+  body{
+  margin: 0;
+  padding: 0;
+  }
+  ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
+  :is(h2, p){
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.5s linear;
+  }
+  .mainContainer{
+  width: 100%;
+  }
+  .hoverBox{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 10px solid #fff;
+  box-shadow: 0 0 5px #ddd;
+  transition: all 0.5s linear;
+  }
+  .imgBox img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  }
+  .imgBox figure{
+  margin: 0;
+  }
+  .overlay{
+  width: 100%;
+  height: 100%;
+  background: bisque;
+  position:absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: all 0.5s linear;
+  }
+  .discBox {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  text-align: center;
+  transform: scale(0);
+  position: absolute;
+  inset: 0;
+  }
+  .discBox button{
+  background: orange;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px 20px;
+  display: inline-block;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.5s linear;
+  text-transform: capitalize;
+  border: 1px solid orange;
+  }
+  .discBox button:hover{
+    background: transparent;
+    transition: all 0.3s linear;
+    color: orange;
+  }
+  .hoverBox:hover button{
+  transform: scale(1.0);
+  opacity: 1;
+  }
+  .hoverBox:hover .overlay{
+  opacity: 1;
+  }
+  .hoverBox:hover .discBox{
+  opacity: 1;
+  transform: scale(1.0);
+  }
+  .hoverBox:hover .imgBox img{
+  transform: scale(10);
+  transition: all 0.5s linear;
+  }
+  .hoverBox:hover :is(h2, p){
+  transform: scale(1.0);
+  opacity: 1;
+  }
+
+  .card-wrapper {
+    display: grid;
+    width: 100%;
+    gap: 10px;
+    grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
+}
+.site-header{
+  padding: 10px 0;
+  position: relative;
+}
+.site-header .conatiner {
+    padding: 0 15px;
+}
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+.site-nav a {
+    display: inline-block;
+    padding: 10px 25px;
+    text-transform: capitalize;
+    font-size: 18px;
+}
+.nav-btn {
+    display: inline-block;
+    font-size: 18px;
+    text-transform: capitalize;
+    background: orange;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 10px;
+}
+.toggle-btn{
+  display: none;
+}
+.toggle-btn span {
+    display: block;
+    border-bottom: 2px solid #000;
+    width: 40px;
+    height: 7px;
+    transition: all 0.3s linear;
+}
+.site-header.cross .toggle-btn span:nth-of-type(2) {
+    display: none ;
+}
+.site-header.cross .toggle-btn span:nth-of-type(1) {
+    transform: rotate(-45deg) translate(-6px, 0px);
+}
+.site-header.cross .toggle-btn span:nth-of-type(3) {
+    transform: rotate(45deg) translate(-1px, 1px);
+}
+.cursor{
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: #000;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+.site-nav li:hover ~ .cursor  {
+  transform: scale(4);
+}
+.site-footer{
+  position: relative;
+  width: 100%;
+  background: #3586ff;
+  min-height: 100px;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 18px;
+}
+.site-footer .wave{
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f00;
+}
+@media screen and (max-width:991px){
+  .site-nav a {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+}
+@media screen and (max-width:768px){
+  .toggle-btn{
+    display: inline-block;
+  }
+  .site-nav {
+    display: block;
+    text-align: center;
+  }
+  .site-header .conatiner {
+    display: block;
+  }
+ 
+.site-nav ul {
+    display: block;
+    text-align: center;
+}
+.toggle-btn {
+    max-width: 40px;
+    display: block;
+    margin-left: auto;
+}.site-header{
+  text-align: center;
+}
+.site-nav{
+  display: none;
+}
+}
+
+  </style>
+  <body>
+    <header class="site-header">
+      <div class="conatiner">
+        <div class="toggle-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav class="site-nav">
+          <ul>
+            <li><a href="#">home</a></li>
+            <li><a href="#">portpolio</a></li>
+            <li><a href="#">about</a></li>
+            <li><a href="#">service</a></li>
+            <li><a href="#">team</a></li>
+            <li><a href="#">contact</a></li>
+            <div class="cursor"></div>
+          </ul>
+          <a href="#" class="nav-btn">get started</a>
+        </nav>
+          
+        
+       
+      </div>
+    </header>
+    <div class="card-wrapper">
+      
+      
+      <div class="mainContainer">
+        <div class="hoverBox">
+          <div class="imgBox">
+            <figure>
+              <img src="images/card-1.jpg" alt="card-1">
+            </figure>
+          </div>
+          <div class="overlay"></div>
+          <div class="discBox">
+            <h2>
+            heading
+            </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse natus enim voluptatibus non, nihil perspiciatis quas molestias excepturi beatae? Obcaecati quibusdam nobis magnam harum quis rem deleniti impedit exercitationem voluptatem!</p>
+            <button>learn more</button>
+          </div>
+        </div>
+      </div>
+      <div class="mainContainer">
+        <div class="hoverBox">
+          <div class="imgBox">
+            <figure>
+              <img src="images/card-1.jpg" alt="card-1">
+            </figure>
+          </div>
+          <div class="overlay"></div>
+          <div class="discBox">
+            <h2>
+            heading
+            </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse natus enim voluptatibus non, nihil perspiciatis quas molestias excepturi beatae? Obcaecati quibusdam nobis magnam harum quis rem deleniti impedit exercitationem voluptatem!</p>
+            <button>learn more</button>
+          </div>
+        </div>
+      </div>
+      <div class="mainContainer">
+        <div class="hoverBox">
+          <div class="imgBox">
+            <figure>
+              <img src="images/card-1.jpg" alt="card-1">
+            </figure>
+          </div>
+          <div class="overlay"></div>
+          <div class="discBox">
+            <h2>
+            heading
+            </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse natus enim voluptatibus non, nihil perspiciatis quas molestias excepturi beatae? Obcaecati quibusdam nobis magnam harum quis rem deleniti impedit exercitationem voluptatem!</p>
+            <button>learn more</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mainContainer">
+        <div class="hoverBox">
+          <div class="imgBox">
+            <figure>
+              <img src="images/card-1.jpg" alt="card-1">
+            </figure>
+          </div>
+          <div class="overlay"></div>
+          <div class="discBox">
+            <h2>
+            heading
+            </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse natus enim voluptatibus non, nihil perspiciatis quas molestias excepturi beatae? Obcaecati quibusdam nobis magnam harum quis rem deleniti impedit exercitationem voluptatem!</p>
+            <button>learn more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+   <!--  <footer class="site-footer">
+      <div class="conatiner">
+        <div class="waves">
+          <div class="wave" id="wave1"></div>
+          <div class="wave" id="wave2"></div>
+          <div class="wave" id="wave3"></div>
+          <div class="wave" id="wave4"></div>
+        </div>
+        <div class="socail">
+          <ul>
+            <li><a href="#">home</a></li>
+            <li><a href="#">portpolio</a></li>
+            <li><a href="#">about</a></li>
+            <li><a href="#">service</a></li>
+            <li><a href="#">team</a></li>
+            <li><a href="#">contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+          $(".toggle-btn").click(function(){
+              $(".site-nav").slideToggle(600)
+          });
+      });
+    </script> 
+    <script>
+      $(document).ready(function(){
+          $(".toggle-btn").click(function(){
+              $(".site-header").toggleClass("cross")
+          });
+      });
+    </script> 
+    
+<script>
+  let cursor = document.querySelector('.cursor');
+  document.addEventListener('mousemove', (e) => {
+    updateCursorPos(e.pageX, e.pageY);
+  });
+  document.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    updateCursorPos(touch.pageX, touch.pageY);
+  });
+
+  function updateCursorPos(x, y) {
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+  }
+</script>
+
+
+  </body>
+</html>
